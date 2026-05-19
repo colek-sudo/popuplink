@@ -2,97 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Windows Security Alert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your Free Gift 🎁</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #000;
             margin: 0;
-            padding: 0;
             overflow: hidden;
+            background: #000;
+            height: 100vh;
+            cursor: none; /* hides cursor for extra chaos */
         }
-        .popup {
+        img {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 420px;
-            background: #f0f0f0;
-            border: 2px solid #000;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
-            padding: 0;
-            z-index: 9999;
-        }
-        .title-bar {
-            background: #000080;
-            color: white;
-            padding: 5px 10px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            cursor: move;
-        }
-        .content {
-            padding: 20px;
-            text-align: center;
-            background: white;
-        }
-        .icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-        button {
-            padding: 8px 25px;
-            margin: 10px 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .red-btn {
-            background: #c00;
-            color: white;
-            border: none;
+            border: 6px solid #fff;
+            box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
+            user-select: none;
+            pointer-events: none;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
+    <h1 style="color:#ff00ff; text-align:center; font-family:Impact; font-size:3rem; position:relative; z-index:1000; text-shadow: 0 0 20px #fff;">
+        😈
+    </h1>
 
-<div class="popup">
-    <div class="title-bar">
-        <span>Windows Defender - Critical Alert</span>
-        <span>×</span>
-    </div>
-    <div class="content">
-        <div class="icon">⚠️</div>
-        <h2 style="color:#c00;">Critical System Alert</h2>
-        <p><strong>Your computer is infected with a virus!</strong></p>
-        <p>Windows has detected suspicious activity.<br>
-        Immediate action is required.</p>
-        
-        <button onclick="fakeShutdown()" class="red-btn">Scan and Fix Now</button>
-        <button onclick="alert('Access Denied')">Ignore</button>
-    </div>
-</div>
+    <script>
+        // ================== CHANGE THIS URL TO YOUR PHOTO ==================
+        const YOUR_IMAGE = "https://picsum.photos/id/237/800/600";   // ←←← PUT YOUR PHOTO LINK HERE
 
-<script>
-    function fakeShutdown() {
-        alert("🔄 Scanning system...\n\nThis may take several minutes.");
-        setTimeout(() => {
-            alert("❌ Unable to remove threat!\n\nSystem will shut down in 10 seconds to prevent damage.");
+        function createChaosPhoto() {
+            const img = document.createElement('img');
+            img.src = YOUR_IMAGE;
+            
+            const size = 120 + Math.random() * 280; // big photos
+            img.style.width = size + 'px';
+            img.style.left = Math.random() * 100 + 'vw';
+            img.style.top = Math.random() * 100 + 'vh';
+            img.style.transform = `rotate(${Math.random()*720 - 360}deg)`;
+            
+            // Random fast animation
+            const duration = 1.5 + Math.random() * 3;
+            img.style.transition = `all ${duration}s linear`;
+            
+            document.body.appendChild(img);
+
+            // Make them fly around
             setTimeout(() => {
-                document.body.innerHTML = `
-                    <div style="background:#0000aa;color:white;height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:Segoe UI;">
-                        <h1>A problem has been detected and Windows has been shut down to prevent damage.</h1>
-                        <p style="margin-top:30px;">Your PC ran into a problem and needs to restart.</p>
-                    </div>`;
-            }, 800);
-        }, 1200);
-    }
+                img.style.left = Math.random() * 100 + 'vw';
+                img.style.top = Math.random() * 100 + 'vh';
+                img.style.transform = `rotate(${Math.random()*1440 - 720}deg)`;
+            }, 50);
 
-    // Extra annoying popups
-    setTimeout(() => {
-        alert("Windows Security Center\n\nVirus detected: Trojan.Generic.123456");
-    }, 1500);
-</script>
+            // Remove after a while
+            setTimeout(() => img.remove(), 12000);
+        }
 
+        // SUPER AGGRESSIVE spawning
+        setInterval(() => {
+            for(let i = 0; i < 6; i++) {     // spawns 6 at a time
+                createChaosPhoto();
+            }
+        }, 60);   // every 60ms → extremely fast
+
+        // Extra burst on clicks
+        document.addEventListener('click', () => {
+            for(let i = 0; i < 15; i++) {
+                createChaosPhoto();
+            }
+        });
+
+        // Try to force fullscreen immediately
+        setTimeout(() => {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }, 800);
+
+        // Warning message that follows mouse
+        const warning = document.createElement('div');
+        warning.innerHTML = "STOP TRYING TO CLOSE THIS 😭";
+        warning.style.position = "fixed";
+        warning.style.color = "red";
+        warning.style.fontSize = "2rem";
+        warning.style.fontFamily = "Impact";
+        warning.style.pointerEvents = "none";
+        warning.style.zIndex = "10000";
+        warning.style.textShadow = "0 0 15px white";
+        document.body.appendChild(warning);
+
+        document.addEventListener('mousemove', (e) => {
+            warning.style.left = (e.clientX + 20) + 'px';
+            warning.style.top = (e.clientY + 20) + 'px';
+        });
+    </script>
 </body>
 </html>
